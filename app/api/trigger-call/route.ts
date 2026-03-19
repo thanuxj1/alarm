@@ -9,11 +9,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Twilio credentials not configured' }, { status: 500 });
     }
 
+    console.log('Trigger call endpoint:', { phone, from: process.env.TWILIO_PHONE });
+
     await makeCall(phone);
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error making call:', error);
-    return NextResponse.json({ error: 'Failed to make call' }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorCode = (error as any)?.code;
+    const errorStatus = (error as any)?.status;
+    
+    console.error('Trigger call error:', { errorMessage, errorCode, errorStatus, error });
+    
+    return NextResponse.json(
+      { 
+        error: 'Failed to make call',
+        details: errorMessage,
+        code: errorCode,
+        status: errorStatus,
+      },
+      { status: 500 }
+    );
   }
 }
