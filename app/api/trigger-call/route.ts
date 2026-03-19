@@ -11,9 +11,9 @@ export async function POST(req: NextRequest) {
 
     console.log('Trigger call endpoint:', { phone, from: process.env.TWILIO_PHONE });
 
-    await makeCall(phone);
+    const call = await makeCall(phone);
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, call: { sid: call.sid, status: call.status } });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     const errorCode = (error as any)?.code;
