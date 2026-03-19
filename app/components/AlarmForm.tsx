@@ -44,6 +44,7 @@ export default function AlarmForm() {
             onChange={(e) => setPhone(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-100"
             required
+            autoComplete="tel"
           />
         </div>
         <div>
@@ -58,6 +59,7 @@ export default function AlarmForm() {
             className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-100"
             min="1"
             required
+            autoComplete="off"
           />
         </div>
         <div>
@@ -72,6 +74,7 @@ export default function AlarmForm() {
             className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-100"
             min="1"
             required
+            autoComplete="off"
           />
         </div>
         <button
